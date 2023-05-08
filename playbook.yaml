@@ -1,16 +1,7 @@
 ---
+- name: "my first playbook"
+  hosts: localhost
 
-  - name: sampleplaybook # name of the playbook
-    hosts: localhost # where to run
-    become: yes # run as a different user?
-    become_user: root
-    
-    tasks: # declare a task
-      - name: Install Apache httpd # define the name of the task
-        yum: # run a task module yum
-          name: httpd # name of the package
-          state: present # what to do? install
-      - name: Second task
-        service:
-          name: httpd
-          state: started
+  tasks:
+    - name: "test connectivity"
+      ping: 
