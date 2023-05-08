@@ -2,6 +2,7 @@
 
 ## Requirements
 - `python` - version `3.9` should be good enough ;)
+- `virtualenv` - `python3 -m pip install virtualenv`
 
 ## How to run it?
 
