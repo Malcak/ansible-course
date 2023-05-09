@@ -1,0 +1,7 @@
+---
+- name: Clieck remote clients connectivity
+  hosts: all
+
+  tasks:
+    - name: Test connectivity
+      ansible.builtin.ping:
