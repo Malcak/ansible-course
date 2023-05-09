@@ -1,0 +1,7 @@
+all:
+  children:
+    aws:
+      hosts:
+        client:
+          ansible_user: ec2-user
+          ansible_host: 13.57.212.210
