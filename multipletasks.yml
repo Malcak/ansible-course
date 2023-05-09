@@ -1,10 +1,11 @@
 ---
-- name: "running 2 tasks"
+- name: Running 2 tasks
   hosts: localhost
 
   tasks:
-    - name: test connectivity
-      ping:
+    - name: Test connectivity
+      ansible.builtin.ping:
 
-    - name: print hello world
-      debug: msg="hello world :("
+    - name: Print hello world
+      ansible.builtin.debug:
+        msg: "hello world :("

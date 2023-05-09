@@ -4,11 +4,11 @@
 
   tasks:
     - name: Install apache
-      yum:
+      ansible.builtin.yum:
         name: httpd
         state: present
 
     - name: Start apache
-      service:
+      ansible.builtin.service:
         name: httpd
         state: started

@@ -1,7 +1,8 @@
 ---
-- name: "my second playbook"
+- name: My second playbook
   hosts: localhost
 
   tasks:
-    - name: "print hello world"
-      debug: msg="Hello World!"
+    - name: Print hello world
+      ansible.builtin.debug:
+        msg: Hello World!
