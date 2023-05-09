@@ -1,0 +1,13 @@
+---
+- name: Copy file from local to remote client
+  hosts: all
+
+  tasks:
+    - name: Copy file
+      become: true
+      ansible.builtin.copy:
+        src: ./resources/dummy.cfg
+        dest: /tmp
+        owner: ec2-user
+        group: ec2-user
+        mode: "0644"
