@@ -23,12 +23,27 @@ python3 -m pip install -r requirements.txt
 
 ## Running the Playbooks
 
-To check
+To perform a ping to localhost (to check if ansible is present)
 ```bash
-ansible-playbook -C -D playbook.yml 
+make
 ```
 
-To run it
+To perform a ping to all the inventory
 ```bash
-ansible-playbook playbook.yml
+make ping
+```
+
+To list all the inventory
+```bash
+make inventory
+```
+
+To check a playbook with all the inventory
+```bash
+PLAYBOOK=playbook.yml make check 
+```
+
+To run a playbook with all the inventory
+```bash
+PLAYBOOK=playbook.yml make run
 ```
