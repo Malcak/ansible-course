@@ -1,0 +1,16 @@
+---
+- name: Create a cronjob
+  hosts: all
+
+  tasks:
+    - name: Schedule a cron
+      become: true
+      ansible.builtin.cron:
+        name: This job is scheduled by Ansible
+        minute: "*"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        user: root
+        job: "/tmp/dummy.sh"
