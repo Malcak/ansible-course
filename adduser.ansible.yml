@@ -1,0 +1,11 @@
+---
+- name: Managing users
+  hosts: all
+
+  tasks:
+    - name: Create user
+      become: true
+      ansible.builtin.user:
+        name: george
+        home: /home/george
+        shell: /bin/bash
