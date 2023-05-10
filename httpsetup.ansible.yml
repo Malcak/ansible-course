@@ -1,0 +1,29 @@
+---
+- name: Setup httpd and open firewall port
+  hosts: all
+
+  tasks:
+    - name: Install apache packages
+      become: true
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Start httpd
+      become: true
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+    - name: Open port 80 for http access
+      become: true
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+
+    - name: Restart firewalld service to load firewall changes
+      become: true
+      ansible.builtin.service:
+        name: firewalld
+        state: reloaded
