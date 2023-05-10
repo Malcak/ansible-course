@@ -1,0 +1,10 @@
+---
+- name: Change file permissions
+  hosts: all
+
+  tasks:
+    - name: Files permissions
+      become: true
+      ansible.builtin.file:
+        path: /tmp/dummy.pem
+        mode: a+w
