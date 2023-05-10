@@ -1,0 +1,8 @@
+---
+- name: Run shell scrip
+  hosts: all
+
+  tasks:
+    - name: Run shell script
+      ansible.builtin.command: "/tmp/dummy.sh"
+      changed_when: false
