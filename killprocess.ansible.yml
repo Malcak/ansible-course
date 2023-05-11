@@ -1,0 +1,16 @@
+---
+- name: Find a process and kill it
+  hosts: all
+
+  tasks:
+    - name: Get running processes from remote hosts
+      ignore_errors: true
+      ansible.builtin.command: "ps -few | grep top | awk '{print $2}'"
+      changed_when: false
+      register: running_process
+
+    - name: Kill running process
+      ignore_errors: true
+      ansible.builtin.command: "kill {{ item }}"
+      changed_when: false
+      with_items: "{{ running_process.stdout_lines }}"
