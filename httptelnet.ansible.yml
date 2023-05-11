@@ -1,0 +1,22 @@
+---
+- name: Setup httpd and telnet
+  hosts: all
+
+  tasks:
+    - name: Install httpd
+      become: true
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Start httpd
+      become: true
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+    - name: Install telnet
+      become: true
+      ansible.builtin.yum:
+        name: telnet
+        state: present
