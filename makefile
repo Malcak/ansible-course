@@ -4,13 +4,13 @@ local-ping:
 	ansible localhost -m ping
 
 ping:
-	ansible all -m ping -i inventory/
+	ansible all -m ping
 
 inventory: inventory/
-	ansible-inventory --list -i inventory
+	ansible-inventory --list
 
 check:
-	ansible-playbook -C -D ${PLAYBOOK} -i inventory
+	ansible-playbook -C -D ${PLAYBOOK}
 
 run:
-	ansible-playbook ${PLAYBOOK} -i inventory
+	ansible-playbook ${PLAYBOOK}

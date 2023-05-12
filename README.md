@@ -38,12 +38,12 @@ To list all the inventory
 make inventory
 ```
 
-To check a playbook with all the inventory
+To check a playbook
 ```bash
 PLAYBOOK=playbook.yml make check 
 ```
 
-To run a playbook with all the inventory
+To run a playbook
 ```bash
 PLAYBOOK=playbook.yml make run
 ```
