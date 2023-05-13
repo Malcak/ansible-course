@@ -1,0 +1,4 @@
+---
+- name: Display the port
+  ansible.builtin.debug:
+    msg: "Hello {{ username }}"

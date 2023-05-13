@@ -1,0 +1,7 @@
+---
+- name: Test parameters
+  hosts: localhost
+
+  roles:
+    - role: debug
+      username: "mancasta"
