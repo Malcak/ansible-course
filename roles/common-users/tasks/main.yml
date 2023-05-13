@@ -1,0 +1,86 @@
+---
+# User: root
+- name: "Ensure root has NO ssh keys enabled"
+  ansible.builtin.file:
+    path: "/root/.ssh/authorized_keys"
+    state: "absent"
+  tags: "users_update"
+
+- name: root user bashrc file
+  ansible.builtin.template:
+    src: dot_bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - bashrc
+    - users_update
+
+# Group: staff
+- name: "Add staff group"
+  ansible.builtin.group:
+    name: "staff"
+    gid: "51"
+    state: "present"
+  tags: "users_update"
+
+# User: accounts we want to keep
+- name: "Add accounts we want to keep"
+  ansible.builtin.user:
+    name: "{{ item.key }}"
+    comment: "{{ item.value.name }}"
+    groups: "{{ item.value.group }}"
+    shell: /bin/bash
+  with_dict: "{{ users.keep }}"
+  tags: "users_update"
+
+- name: "Ensure staff user's .ssh directory exists"
+  ansible.builtin.file:
+    path: "/home/{{ item.key }}/.ssh/"
+    state: "directory"
+    owner: "{{ item.key }}"
+    group: "{{ item.key }}"
+    mode: "0700"
+  with_dict: "{{ users.keep }}"
+  tags: "users_update"
+
+- name: "Populate staff user's authorized_keys"
+  ansible.builtin.template:
+    src: "authorized_keys/{{ item.key }}"
+    dest: "/home/{{ item.key }}/.ssh/authorized_keys"
+    owner: "{{ item.key }}"
+    group: "{{ item.key }}"
+    mode: "0600"
+  with_dict: "{{ users.keep }}"
+  tags: "users_update"
+
+- name: Update staff user's .bashrc file
+  ansible.builtin.template:
+    src: dot_bashrc
+    dest: "/home/{{ item.key }}/.bashrc"
+    owner: "{{ item.key }}"
+    group: "{{ item.key }}"
+    mode: "0644"
+  with_dict: "{{ users.keep }}"
+  tags:
+    - bashrc
+    - users_update
+
+- name: "Ensure /etc/sudoers.d exists"
+  ansible.builtin.file:
+    path: "/etc/sudoers.d/"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  tags: "users_update"
+
+- name: "Grant staff passwordless sudo rights"
+  ansible.builtin.template:
+    src: "etc/sudoers.d/90-staff-passwordless-sudo"
+    dest: "/etc/sudoers.d/90-staff-passwordless-sudo"
+    owner: "root"
+    group: "root"
+    mode: "0440"
+  tags: "users_update"
