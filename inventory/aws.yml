@@ -4,5 +4,5 @@ all:
       hosts:
         client:
           ansible_user: ec2-user
-          ansible_host: 54.153.13.37
+          ansible_host: 13.52.99.20
           ansible_python_interpreter: /usr/bin/python3
