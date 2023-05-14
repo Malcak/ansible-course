@@ -1,0 +1,12 @@
+---
+- name: Create users thru loop
+  hosts: localhost
+
+  tasks:
+    - name: Create users
+      ansible.builtin.user:
+        name: "{{ item }}"
+      loop:
+        - jerry
+        - kramer
+        - eliane
