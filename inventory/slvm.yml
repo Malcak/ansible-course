@@ -1,0 +1,12 @@
+slvm:
+  children:
+    peex:
+      hosts:
+        c101.peex.malcak.me:
+          ansible_user: debian
+          ansible_host: c101.peex.malcak.me
+    dpl:
+      hosts:
+        c101.dpl.malcak.me:
+          ansible_user: rocky
+          ansible_host: 10.202.54.129

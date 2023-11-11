@@ -1,8 +1,6 @@
-all:
-  children:
-    aws:
-      hosts:
-        client:
-          ansible_user: ec2-user
-          ansible_host: 13.52.99.20
-          ansible_python_interpreter: /usr/bin/python3
+aws:
+  hosts:
+    client:
+      ansible_user: ubuntu
+      ansible_host: 54.183.30.160
+      ansible_python_interpreter: /usr/bin/python3
